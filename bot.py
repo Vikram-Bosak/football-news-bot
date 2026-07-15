@@ -15,10 +15,13 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 HISTORY_FILE = "history.json"
 
-# Configure OpenAI client
+# Configure OpenAI client for NVIDIA API
 client = None
 if OPENAI_API_KEY:
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI(
+        base_url="https://integrate.api.nvidia.com/v1",
+        api_key=OPENAI_API_KEY
+    )
 
 def load_history():
     if os.path.exists(HISTORY_FILE):
@@ -95,13 +98,13 @@ def generate_facebook_post(news_item):
     
     try:
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model="nvidia/nemotron-3-ultra-550b-a55b",
             messages=[
                 {"role": "system", "content": "You are a professional social media manager."},
                 {"role": "user", "content": prompt}
             ],
             temperature=0.7,
-            max_tokens=300
+            max_tokens=2000
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
