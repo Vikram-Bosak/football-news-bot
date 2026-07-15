@@ -83,16 +83,18 @@ def generate_facebook_post(news_item):
         
     prompt = f"""
     You are an expert social media manager for a huge football (soccer) fan page in the United States.
-    Your goal is to write a highly engaging, emotional, and curiosity-driven Facebook text post about the following news.
+    Your goal is to write a short, simple, and highly engaging Facebook text post about the following news.
     
     News Title: {news_item['title']}
     News Snippet: {news_item['description']}
     
     Requirements:
-    - Target Audience: United States (American Audience - use natural American English terms).
-    - Make it very engaging, emotional, and click-worthy.
+    - KEEP IT VERY SHORT AND SIMPLE. People should be able to read it instantly and react. Do not write a long post.
+    - Target Audience: United States (American Audience).
+    - Primary Goal: Maximize engagement by asking a direct, thought-provoking question to the audience.
+    - Make the language easy, attractive, and click-worthy.
     - Include relevant emojis to boost engagement.
-    - Include a strong Call-to-Action (CTA) at the end, like "Do you agree?", "What's your prediction?", "Tell us in the comments!", or "Tag a friend who needs to see this!"
+    - MUST include a strong Call-to-Action (CTA) or question at the end to inspire Comments, Likes, or Shares.
     - The output must ONLY be the text of the Facebook post itself, ready to be published. Do not include any meta-text, quotes, or notes.
     """
     
